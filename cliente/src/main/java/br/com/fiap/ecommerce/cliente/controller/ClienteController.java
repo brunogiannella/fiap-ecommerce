@@ -8,7 +8,8 @@ import br.com.fiap.ecommerce.cliente.service.ClienteService;
 
 import java.util.List;
 
-@RestController(value = "/clientes")
+@RestController
+@RequestMapping("clientes")
 public class ClienteController {
 
 

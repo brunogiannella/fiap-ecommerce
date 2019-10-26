@@ -1,13 +1,11 @@
 package br.com.fiap.ecommerce.cliente.model;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.io.Serializable;
-import java.util.Objects;
 
 @Entity(name = "CLIENTE")
 public class Cliente implements Serializable {
@@ -36,7 +34,6 @@ public class Cliente implements Serializable {
     private String cep;
     
     @Column(name = "DATA_NASCIMENTO")
-    @JsonProperty(value = "data_nascimento")
     private String dataNascimento;
 
 
