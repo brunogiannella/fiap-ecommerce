@@ -11,8 +11,8 @@ eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
-  serviceurl:
-    defaultzone: http://localhost:8761/eureka/
+    serviceurl:
+      defaultzone: http://localhost:8761/eureka/
 
     
 zuul:
