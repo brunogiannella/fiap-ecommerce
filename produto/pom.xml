@@ -11,8 +11,8 @@
 	</parent>
 
 
-	<groupId>br.com.walterrx.ecommerce</groupId>
-	<artifactId>cliente</artifactId>
+	<groupId>br.com.fiap.ecommerce</groupId>
+	<artifactId>produto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cliente</name>
 	<description>Demo project for Spring Boot</description>
