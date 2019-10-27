@@ -6,18 +6,22 @@ spring:
     name: zuul
 
 eureka:
-  instance:
-    preferIpAddress: true
   client:
-    registerWithEureka: true
-    fetchRegistry: true
     serviceurl:
       defaultzone: http://localhost:8761/eureka/
 
-    
 zuul:
-  prefix: api
+  prefix: /api
   routes:
-    clientes-service:
+    cliente:
       path: /clientes/v1/**
-      serviceId: cliente
+      serviceId: CLIENTE
+    frete:
+      path: /fretes/v1/**
+      serviceId: FRETE
+    produto:
+      path: /produtos/v1/**
+      serviceId: PRODUTO
+    suporte:
+      path: /suportes/v1/**
+      serviceId: SUPORTE
