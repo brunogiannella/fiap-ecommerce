@@ -25,3 +25,6 @@ zuul:
     suporte:
       path: /suportes/v1/**
       serviceId: SUPORTE
+    pedido:
+      path: /pedidos/v1/**
+      serviceId: PEDIDO

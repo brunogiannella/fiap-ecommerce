@@ -32,19 +32,19 @@ public class Produto implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CATEGORIA_ID")
 	private Categoria categoria;
 
 	@Column(name = "GENERO")
 	@Enumerated(EnumType.STRING)
-	private GeneroEnum sexo;
+	private GeneroEnum genero;
 
-	@Column(name = "CEP")
+	@Column(name = "QUANTIDADE_ESTOQUE")
 	private Long quantidadeEstoque;
 
-	@Column(name = "DATA_NASCIMENTO")
-	private Boolean ativo;
+	@Column(name = "QUANTIDADE_VISUALIZACOES")
+	private Long quantidadeVisualizacoes;
 
 	public Long getId() {
 		return id;
@@ -78,12 +78,12 @@ public class Produto implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public GeneroEnum getSexo() {
-		return sexo;
+	public GeneroEnum getGenero() {
+		return genero;
 	}
 
-	public void setSexo(GeneroEnum sexo) {
-		this.sexo = sexo;
+	public void setGenero(GeneroEnum genero) {
+		this.genero = genero;
 	}
 
 	public Long getQuantidadeEstoque() {
@@ -94,12 +94,12 @@ public class Produto implements Serializable {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
-	public Boolean getAtivo() {
-		return ativo;
+	public Long getQuantidadeVisualizacoes() {
+		return quantidadeVisualizacoes;
 	}
 
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
+	public void setQuantidadeVisualizacoes(Long quantidadeVisualizacoes) {
+		this.quantidadeVisualizacoes = quantidadeVisualizacoes;
 	}
 
 }

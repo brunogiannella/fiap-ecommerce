@@ -20,15 +20,9 @@ public class ChamadoService {
         return chamadoRepository.findAll();
     }
 
-    public Chamado getPedido(final Long id) {
+    public Chamado getChamado(final Long id) {
         return chamadoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("ID: " + id + " não encontrado !"));
-    }
-
-    // Pattern fallback caso exista algum problema na consulta de CPFs no sistema
-    public Chamado buildFallbackGetPedido(Long id){
-    	Chamado pedido = new Chamado();
-        return pedido;
     }
 
 

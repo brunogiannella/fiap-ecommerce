@@ -7,6 +7,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.fiap.ecommerce.produto.model.Categoria;
+import br.com.fiap.ecommerce.produto.model.GeneroEnum;
 import br.com.fiap.ecommerce.produto.model.Produto;
 import br.com.fiap.ecommerce.produto.repository.ProdutoRepository;
 
@@ -19,10 +21,25 @@ public class ProdutoService {
     public List<Produto> findAll() {
         return produtoRepository.findAll();
     }
+    
+    public List<Produto> findByGenero(GeneroEnum gender) {
+        return produtoRepository.findByGenero(gender);
+    }
+    
+    public List<Produto> findTop3ByCategoria(Long idCategoria) {
+    	Categoria categoria = new Categoria();
+    	categoria.setId(idCategoria);
+        return produtoRepository.findTop3ByCategoriaOrderByQuantidadeVisualizacoesDesc(categoria);
+    }
 
     public Produto getPedido(final Long id) {
-        return produtoRepository.findById(id)
+        Produto produto =  produtoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("ID: " + id + " não encontrado !"));
+        
+        produto.setQuantidadeVisualizacoes(produto.getQuantidadeVisualizacoes() + 1);
+        update(produto);
+        
+        return produto;
     }
 
     // Pattern fallback caso exista algum problema na consulta de CPFs no sistema
@@ -32,17 +49,18 @@ public class ProdutoService {
     }
 
 
-    public Produto create(final Produto cliente) {
-        return produtoRepository.save(cliente);
+    public Produto create(final Produto produto) {
+    	produto.setQuantidadeVisualizacoes(0L);
+        return produtoRepository.save(produto);
     }
 
 
-    public Produto update(final Produto cliente) {
-        if(cliente.getId()== null) {
+    public Produto update(final Produto produto) {
+        if(produto.getId()== null) {
             throw new EntityNotFoundException("Produto nao foi encontrado para atualização !");
         }
 
-        return produtoRepository.save(cliente);
+        return produtoRepository.save(produto);
     }
 
     public void delete(final Long id) {
@@ -52,4 +70,8 @@ public class ProdutoService {
 
         produtoRepository.deleteById(id);
     }
+
+    public List<Produto> findBy(String palavraChave) {
+    	return produtoRepository.findByDescricao(palavraChave);
+	}
 }

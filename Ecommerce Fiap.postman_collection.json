@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "094d262e-74e1-4afc-a231-c2e22cd81960",
+		"name": "Ecommerce Fiap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Microservice Cliente",
+			"item": [
+				{
+					"name": "Cadastrar cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cpf\" : \"41766098852\",\n\t\"nome\" : \"Bruno Giannella\",\n\t\"endereco\" : \"Rua doutor luiz migliano, 1800\",\n\t\"telefone\" : \"11985382524\",\n\t\"cep\" : \"05640001\",\n\t\"dataNascimento\" : \"19121991\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/clientes/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"clientes",
+								"v1",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Microservice Frete",
+			"item": [
+				{
+					"name": "Calcular Frete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8075/api/fretes/v1/calculos-frete/05640001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"fretes",
+								"v1",
+								"calculos-frete",
+								"05640001"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
