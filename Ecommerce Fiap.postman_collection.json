@@ -45,6 +45,89 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Consultar clientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cpf\" : \"41766098852\",\n\t\"nome\" : \"Bruno Giannella\",\n\t\"endereco\" : \"Rua doutor luiz migliano, 1800\",\n\t\"telefone\" : \"11985382524\",\n\t\"cep\" : \"05640001\",\n\t\"dataNascimento\" : \"19121991\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/clientes/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"clientes",
+								"v1",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar cliente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cpf\" : \"41766098852\",\n\t\"nome\" : \"Bruno Giannella\",\n\t\"endereco\" : \"Rua doutor luiz migliano, 1800\",\n\t\"telefone\" : \"11985382524\",\n\t\"cep\" : \"05640001\",\n\t\"dataNascimento\" : \"19121991\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/clientes/v1/clientes/41766098851",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"clientes",
+								"v1",
+								"clientes",
+								"41766098851"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -70,6 +153,515 @@
 								"v1",
 								"calculos-frete",
 								"05640001"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Microservice Suporte",
+			"item": [
+				{
+					"name": "Abrir chamado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idUsuario\" : 41766098851,\n\t\"titulo\" : \"Problema ao efetuar compra no website\",\n\t\"descricao\" : \"Ocorreu um problema ao tentar comprar o produto Projeto Fenix\",\n\t\"status\" : \"ABERTO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/suportes/v1/chamados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"suportes",
+								"v1",
+								"chamados"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Microservice Pedido",
+			"item": [
+				{
+					"name": "Criar carrinho",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idCliente\" : 41766098851\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/carrinhos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"carrinhos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar item ao carrinho",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idProduto\" : 1,\n\t\"quantidadeProduto\" : 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/carrinhos/17/itens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"carrinhos",
+								"17",
+								"itens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover item do carrinho",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/carrinhos/14/itens/18",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"carrinhos",
+								"14",
+								"itens",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar carrinho",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/carrinhos/17",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"carrinhos",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar pedido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"carrinho\" : {\n\t\t\"id\" : 21\n\t},\n\t\"dataPedido\" : \"2019-11-01T18:25:43.000Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Acompanhar pedido",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"carrinho\" : {\n\t\t\"id\" : 21\n\t},\n\t\"dataPedido\" : \"2019-11-01T18:25:43.000Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/pedidos/28",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"pedidos",
+								"28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Visualizar meus pedidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"carrinho\" : {\n\t\t\"id\" : 21\n\t},\n\t\"dataPedido\" : \"2019-11-01T18:25:43.000Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/pedidos/v1/pedidos?idCliente=41766098851",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"pedidos",
+								"v1",
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "idCliente",
+									"value": "41766098851"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Microservice Produto",
+			"item": [
+				{
+					"name": "Cadastrar categoria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"descricao\" : \"DOMESTICOS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8075/api/produtos/v1/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"produtos",
+								"v1",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar por genero",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8075/api/produtos/v1/produtos?genero=M",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"produtos",
+								"v1",
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "genero",
+									"value": "M"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar por palavra chave",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8075/api/produtos/v1/produtos?palavraChave=Fenix",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"produtos",
+								"v1",
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "palavraChave",
+									"value": "Fenix"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar mais visualizados por categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8075/api/produtos/v1/produtos/top3?categoria=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"produtos",
+								"v1",
+								"produtos",
+								"top3"
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8075/api/produtos/v1/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"produtos",
+								"v1",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar detalhes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8075/api/produtos/v1/produtos/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8075",
+							"path": [
+								"api",
+								"produtos",
+								"v1",
+								"produtos",
+								"11"
 							]
 						}
 					},
