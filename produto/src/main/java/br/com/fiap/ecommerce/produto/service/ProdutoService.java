@@ -32,7 +32,7 @@ public class ProdutoService {
         return produtoRepository.findTop3ByCategoriaOrderByQuantidadeVisualizacoesDesc(categoria);
     }
 
-    public Produto getPedido(final Long id) {
+    public Produto getProduto(final Long id) {
         Produto produto =  produtoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("ID: " + id + " não encontrado !"));
         

@@ -62,7 +62,7 @@ public class ProdutoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> findById(@PathVariable("id") final Long id) {
 		try {
-			return ResponseEntity.ok(produtoService.getPedido(id));
+			return ResponseEntity.ok(produtoService.getProduto(id));
 		} catch (EntityNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
@@ -75,7 +75,7 @@ public class ProdutoController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Produto> update(@PathVariable("id") final Long id, @RequestBody final Produto produto) {
-		Produto prod = produtoService.getPedido(id);
+		Produto prod = produtoService.getProduto(id);
 
 		if (prod == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -87,7 +87,7 @@ public class ProdutoController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") final Long id) {
-		Produto prod = produtoService.getPedido(id);
+		Produto prod = produtoService.getProduto(id);
 
 		if (prod == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
