@@ -1,0 +1,286 @@
+openapi: 3.0.1
+info:
+  title: Api Produto
+  description: Api Produto
+  contact: {}
+  version: "1.0"
+servers:
+- url: //localhost:8086/
+tags:
+- name: Categoria
+  description: APIs de Categoria
+- name: Produto
+  description: APIs de Produto
+paths:
+  /categorias:
+    post:
+      tags:
+      - Categoria
+      summary: create
+      operationId: createUsingPOST
+      requestBody:
+        description: categoria
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Categoria'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: categoria
+  /produtos:
+    get:
+      tags:
+      - Produto
+      summary: findAll
+      operationId: findAllUsingGET_1
+      parameters:
+      - name: genero
+        in: query
+        description: genero
+        schema:
+          type: string
+      - name: palavraChave
+        in: query
+        description: palavraChave
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    post:
+      tags:
+      - Produto
+      summary: create
+      operationId: createUsingPOST_1
+      requestBody:
+        description: produto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Produto'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: produto
+  /produtos/top3:
+    get:
+      tags:
+      - Produto
+      summary: findAll
+      operationId: findAllUsingGET
+      parameters:
+      - name: categoria
+        in: query
+        description: categoria
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+  /produtos/{id}:
+    get:
+      tags:
+      - Produto
+      summary: findById
+      operationId: findByIdUsingGET
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Produto'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    put:
+      tags:
+      - Produto
+      summary: update
+      operationId: updateUsingPUT
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: produto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Produto'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: produto
+    delete:
+      tags:
+      - Produto
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+      deprecated: false
+components:
+  schemas:
+    Categoria:
+      title: Categoria
+      type: object
+      properties:
+        descricao:
+          type: string
+        id:
+          type: integer
+          format: int64
+    Produto:
+      title: Produto
+      type: object
+      properties:
+        categoria:
+          $ref: '#/components/schemas/Categoria'
+        descricao:
+          type: string
+        genero:
+          type: string
+          enum:
+          - M
+          - F
+        id:
+          type: integer
+          format: int64
+        nome:
+          type: string
+        quantidadeEstoque:
+          type: integer
+          format: int64
+        quantidadeVisualizacoes:
+          type: integer
+          format: int64

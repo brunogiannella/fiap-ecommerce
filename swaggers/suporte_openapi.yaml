@@ -1,0 +1,197 @@
+openapi: 3.0.1
+info:
+  title: Api de Suporte
+  description: Api Suporte
+  contact: {}
+  version: "1.0"
+servers:
+- url: //localhost:8085/
+tags:
+- name: Chamados
+  description: Rotas de chamados
+paths:
+  /chamados:
+    get:
+      tags:
+      - Chamados
+      summary: findAll
+      operationId: findAllUsingGET
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Chamado'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    post:
+      tags:
+      - Chamados
+      summary: create
+      operationId: createUsingPOST
+      requestBody:
+        description: chamado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chamado'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Chamado'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: chamado
+  /chamados/{id}:
+    get:
+      tags:
+      - Chamados
+      summary: findById
+      operationId: findByIdUsingGET
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Chamado'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    put:
+      tags:
+      - Chamados
+      summary: update
+      operationId: updateUsingPUT
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: chamado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Chamado'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Chamado'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: chamado
+    delete:
+      tags:
+      - Chamados
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+      deprecated: false
+components:
+  schemas:
+    Chamado:
+      title: Chamado
+      type: object
+      properties:
+        analista:
+          type: string
+        descricao:
+          type: string
+        id:
+          type: integer
+          format: int64
+        idUsuario:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - ABERTO
+          - EM_ATENDIMENTO
+          - CANCELADO
+          - RESOLVIDO
+        titulo:
+          type: string

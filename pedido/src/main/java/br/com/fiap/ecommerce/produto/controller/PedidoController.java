@@ -27,11 +27,21 @@ public class PedidoController {
 	@Autowired
 	private PedidoService pedidoService;
 	
+	/**
+	 * Método responsável por consultar todos os pedidos de um determinado cliente
+	 * @param idCliente - Identificador do cliente (CPF)
+	 * @return ResponseEntity - retorna uma lista de pedidos de um determinado cliente
+	 */
 	@GetMapping
 	public ResponseEntity<List<Pedido>> findAll(@RequestParam Long idCliente) {
 		return ResponseEntity.ok(pedidoService.findAll(idCliente));
 	}
 
+	/**
+	 * Método responsável por consultar um pedido de compras pelo ID
+	 * @param id - identificador do pedido
+	 * @return ResponseEntity - retorna um Pedido
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Pedido> findById(@PathVariable("id") final Long id) {
 		try {
@@ -41,12 +51,22 @@ public class PedidoController {
 		}
 	}
 
+	/**
+	 * Método responsável por criar um pedido
+	 * @param pedido - Objeto pedido, contendo todas as informações dos carrinhos e itens
+	 * @return ResponseEntity - retorna o pedido criado
+	 */
 	@PostMapping
 	public ResponseEntity<Pedido> create(@RequestBody final Pedido pedido) {
 		pedido.setStatus(StatusPedidoEnum.RECEBIDO);
 		return ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.create(pedido));
 	}
 
+	/**
+	 * Método responsável por cancelar um pedido de compras do cliente
+	 * @param id - identificador do pedido de compras do cliente
+	 * @return ResponseEntity - retorno do status code 200 em caso de sucesso
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") final Long id) {
 		Pedido prod = pedidoService.getPedido(id);

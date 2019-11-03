@@ -1,0 +1,184 @@
+openapi: 3.0.1
+info:
+  title: Api de Clientes
+  description: Api Clientes
+  contact: {}
+  version: "1.0"
+servers:
+- url: //localhost:8090/
+tags:
+- name: Clientes
+  description: Rotas de Clientes
+paths:
+  /clientes:
+    get:
+      tags:
+      - Clientes
+      summary: findAll
+      operationId: findAllUsingGET
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    post:
+      tags:
+      - Clientes
+      summary: create
+      operationId: createUsingPOST
+      requestBody:
+        description: cliente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: cliente
+  /clientes/{cpf}:
+    get:
+      tags:
+      - Clientes
+      summary: findByCpf
+      operationId: findByCpfUsingGET
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    put:
+      tags:
+      - Clientes
+      summary: update
+      operationId: updateUsingPUT
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: cliente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: cliente
+    delete:
+      tags:
+      - Clientes
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+      - name: cpf
+        in: path
+        description: cpf
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content: {}
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+      deprecated: false
+components:
+  schemas:
+    Cliente:
+      title: Cliente
+      type: object
+      properties:
+        cep:
+          type: string
+        cpf:
+          type: string
+        dataNascimento:
+          type: string
+        endereco:
+          type: string
+        nome:
+          type: string
+        telefone:
+          type: string

@@ -33,11 +33,21 @@ public class CarrinhoController {
 	@Autowired
 	private ItemCarrinhoService itemCarrinhoService;
 
+	/**
+	 * Método responsável por consultar todos os carrinhos de um determinado cliente
+	 * @param idCliente - Identificador do cliente (CPF)
+	 * @return ResponseEntity - retorna uma lista de carrinhos de um determinado cliente
+	 */
 	@GetMapping
 	public ResponseEntity<List<Carrinho>> findAll(@RequestParam Long idCliente) {
 		return ResponseEntity.ok(carrinhoService.findAll(idCliente));
 	}
 
+	/**
+	 * Método responsável por consultar um carrinho de compras pelo ID
+	 * @param id - identificador do carrinho
+	 * @return ResponseEntity - retorna um Carrinho de compras
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Carrinho> findById(@PathVariable("id") final Long id) {
 		try {
@@ -47,6 +57,11 @@ public class CarrinhoController {
 		}
 	}
 
+	/**
+	 * Método responsável por criar um carrinho de compras
+	 * @param carrinho - Objeto carrinho, contendo todas as informações dos carrinhos e itens
+	 * @return ResponseEntity - retorna o carrinho criado
+	 */
 	@PostMapping
 	public ResponseEntity<Carrinho> create(@RequestBody final Carrinho carrinho) {
 		
@@ -58,6 +73,12 @@ public class CarrinhoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(carrinhoService.create(carrinho));
 	}
 
+	/**
+	 * Método responsável por adicionar item ao carrinho
+	 * @param id - identificador do carrinho
+	 * @param item - objeto ItemCarrinho a ser adicionado
+	 * @return ResponseEntity - retorna o carrinho já com as alterações
+	 */
 	@PostMapping("/{id}/itens")
 	public ResponseEntity<Carrinho> adicionarItem(@PathVariable("id") final Long id,
 			@RequestBody final ItemCarrinho item) {
@@ -75,6 +96,12 @@ public class CarrinhoController {
 		return ResponseEntity.ok(carrinhoService.getCarrinho(id));
 	}
 
+	/**
+	 * Método responsável por remover item do carrinho
+	 * @param id - identificador do carrinho
+	 * @param item - id do item do carrinho a ser removido
+	 * @return ResponseEntity - retorna o carrinho já com as alterações
+	 */
 	@DeleteMapping("/{id}/itens/{idItem}")
 	public ResponseEntity<Carrinho> adicionarItem(@PathVariable("id") final Long id,
 			@PathVariable("idItem") final Long idItem) {
@@ -82,6 +109,11 @@ public class CarrinhoController {
 		return ResponseEntity.ok(null);
 	}
 
+	/**
+	 * Método responsável por cancelar um carrinho de compras do cliente
+	 * @param id - identificador do carrinho de compras do cliente
+	 * @return ResponseEntity - retorno do status code 200 em caso de sucesso
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") final Long id) {
 		Carrinho prod = carrinhoService.getCarrinho(id);

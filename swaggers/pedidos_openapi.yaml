@@ -1,0 +1,413 @@
+openapi: 3.0.1
+info:
+  title: Api Documentation
+  description: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  version: "1.0"
+servers:
+- url: //localhost:8082/
+tags:
+- name: carrinho-controller
+  description: Carrinho Controller
+- name: pedido-controller
+  description: Pedido Controller
+paths:
+  /carrinhos:
+    get:
+      tags:
+      - carrinho-controller
+      summary: findAll
+      operationId: findAllUsingGET
+      parameters:
+      - name: idCliente
+        in: query
+        description: idCliente
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carrinho'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    post:
+      tags:
+      - carrinho-controller
+      summary: create
+      operationId: createUsingPOST
+      requestBody:
+        description: carrinho
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Carrinho'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Carrinho'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: carrinho
+  /carrinhos/{id}:
+    get:
+      tags:
+      - carrinho-controller
+      summary: findById
+      operationId: findByIdUsingGET
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Carrinho'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    delete:
+      tags:
+      - carrinho-controller
+      summary: delete
+      operationId: deleteUsingDELETE
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+      deprecated: false
+  /carrinhos/{id}/itens:
+    post:
+      tags:
+      - carrinho-controller
+      summary: adicionarItem
+      operationId: adicionarItemUsingPOST
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: item
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemCarrinho'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Carrinho'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: item
+  /carrinhos/{id}/itens/{idItem}:
+    delete:
+      tags:
+      - carrinho-controller
+      summary: adicionarItem
+      operationId: adicionarItemUsingDELETE
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idItem
+        in: path
+        description: idItem
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Carrinho'
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+      deprecated: false
+  /pedidos:
+    get:
+      tags:
+      - pedido-controller
+      summary: findAll
+      operationId: findAllUsingGET_1
+      parameters:
+      - name: idCliente
+        in: query
+        description: idCliente
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    post:
+      tags:
+      - pedido-controller
+      summary: create
+      operationId: createUsingPOST_1
+      requestBody:
+        description: pedido
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        201:
+          description: Created
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+      x-codegen-request-body-name: pedido
+  /pedidos/{id}:
+    get:
+      tags:
+      - pedido-controller
+      summary: findById
+      operationId: findByIdUsingGET_1
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+    delete:
+      tags:
+      - pedido-controller
+      summary: delete
+      operationId: deleteUsingDELETE_1
+      parameters:
+      - name: id
+        in: path
+        description: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        204:
+          description: No Content
+          content: {}
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+      deprecated: false
+components:
+  schemas:
+    Carrinho:
+      title: Carrinho
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        idCliente:
+          type: integer
+          format: int64
+        itensCarrinho:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemCarrinho'
+        status:
+          type: string
+          enum:
+          - ABERTO
+          - FECHADO
+          - CANCELADO
+    ItemCarrinho:
+      title: ItemCarrinho
+      type: object
+      properties:
+        dataAddItem:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        idProduto:
+          type: integer
+          format: int64
+        quantidadeProduto:
+          type: integer
+          format: int64
+    Pedido:
+      title: Pedido
+      type: object
+      properties:
+        carrinho:
+          $ref: '#/components/schemas/Carrinho'
+        dataEntrega:
+          type: string
+          format: date-time
+        dataPedido:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - RECEBIDO
+          - EM_SEPARACAO
+          - ENVIADO
+          - ENTREGUE
+          - CANCELADO

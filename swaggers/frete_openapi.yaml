@@ -1,0 +1,55 @@
+openapi: 3.0.1
+info:
+  title: API Frete
+  description: API para calculo de frete
+  contact: {}
+  version: "1.0"
+servers:
+- url: //localhost:8083/
+tags:
+- name: Frete
+  description: APIs para calculo de frete
+paths:
+  /calculos-frete/{cep}:
+    get:
+      tags:
+      - Frete
+      summary: API para calculo de frete
+      operationId: findByCpfUsingGET
+      parameters:
+      - name: cep
+        in: path
+        description: cep
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Frete'
+        401:
+          description: Unauthorized
+          content: {}
+        403:
+          description: Forbidden
+          content: {}
+        404:
+          description: Not Found
+          content: {}
+      deprecated: false
+components:
+  schemas:
+    Frete:
+      title: Frete
+      type: object
+      properties:
+        cep:
+          type: string
+        quantidadeDiasEntrega:
+          type: integer
+          format: int32
+        valor:
+          type: number
