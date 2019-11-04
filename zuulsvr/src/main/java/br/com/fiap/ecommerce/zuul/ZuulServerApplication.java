@@ -11,6 +11,11 @@ import br.com.fiap.ecommerce.zuul.filters.ErrorFilter;
 import br.com.fiap.ecommerce.zuul.filters.PostFilter;
 import br.com.fiap.ecommerce.zuul.filters.PreFilter;
 
+/**
+ * Classe responsável pelo Gateway Zuul e inicialização através do SpringBoot
+ * @author Bruno Giannella
+ *
+ */
 @SpringBootApplication
 @EnableZuulProxy
 @EnableDiscoveryClient
@@ -19,16 +24,28 @@ public class ZuulServerApplication {
         SpringApplication.run(ZuulServerApplication.class, args);
     }
     
+    /**
+     * Inicialização de um pré filter para cada rota
+     * @return PreFilter - objeto com regras para pré filtro
+     */
     @Bean
 	public PreFilter preFilter() {
 		return new PreFilter();
 	}
 
+    /**
+     * Inicialização de um pós filter para cada rota
+     * @return PostFilter - objeto com regras para pós filtro
+     */
 	@Bean
 	public PostFilter postFilter() {
 		return new PostFilter();
 	}
 
+	/**
+     * Inicialização de um error filter para cada rota
+     * @return ErrorFilter - objeto com regras para filtro de possíveis errosO
+     */
 	@Bean
 	public ErrorFilter errorFilter() {
 		return new ErrorFilter();

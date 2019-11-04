@@ -5,6 +5,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import zipkin.server.internal.EnableZipkinServer;
 
+/**
+ * Classe responsável pela aplicação do Zipkin e inicialização através do SpringBoot
+ * @author Bruno Giannella
+ *
+ */
 @SpringBootApplication
 @EnableZipkinServer
 public class ZipkinServerApplication {

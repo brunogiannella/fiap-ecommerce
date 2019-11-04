@@ -5,6 +5,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+/**
+ * Classe responsável por inicializar o Microservice de Produto através do SpringBoot
+ * @author Bruno Giannella
+ *
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableRabbit

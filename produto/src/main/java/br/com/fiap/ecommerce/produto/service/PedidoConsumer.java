@@ -15,12 +15,23 @@ import br.com.fiap.ecommerce.produto.model.ItemCarrinho;
 import br.com.fiap.ecommerce.produto.model.Pedido;
 import br.com.fiap.ecommerce.produto.model.Produto;
 
+/**
+ * Classe responsável por ser um Consumidor da fila de PEDIDOS do RabbitMQ
+ * Responsável por atualizar os valores do estoque sempre que um novo pedido for realizado
+ * @author Bruno Giannella
+ *
+ */
 @Component
 public class PedidoConsumer {
 	
 	@Autowired
 	private ProdutoService produtoService;
 	
+	/**
+	 * Método responsável por receber as informações da fila PEDIDO do Rabbit MQ
+	 * Responsável também por atualizar a quantidade em estoque de cada um dos produtos que estão no pedido
+	 * @param fileBody - String com informações recebidas da fila
+	 */
 	@RabbitListener(queues = { "${queue.order.name}" })
 	public void receive(@Payload String fileBody) {
 		ObjectMapper mapper = new ObjectMapper();

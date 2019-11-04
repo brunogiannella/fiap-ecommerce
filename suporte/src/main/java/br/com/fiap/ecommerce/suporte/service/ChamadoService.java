@@ -10,12 +10,21 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.ecommerce.suporte.model.Chamado;
 import br.com.fiap.ecommerce.suporte.repository.ChamadoRepository;
 
+/**
+ * Classe responsável pelos serviços relacionados aos Chamados abertos na plataforma
+ * @author Bruno Giannella
+ *
+ */
 @Service
 public class ChamadoService {
 
     @Autowired
     private ChamadoRepository chamadoRepository;
 
+    /**
+     * Método responsável por consultar todos os chamados na base de dados
+     * @return List<Chamado> - lista de chamados retornados
+     */
     public List<Chamado> findAll() {
         return chamadoRepository.findAll();
     }

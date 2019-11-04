@@ -21,6 +21,11 @@ import br.com.fiap.ecommerce.produto.model.GeneroEnum;
 import br.com.fiap.ecommerce.produto.model.Produto;
 import br.com.fiap.ecommerce.produto.service.ProdutoService;
 
+/**
+ * Classe responsável pelo controlador e exposição das APIs REST de Produtos
+ * @author Bruno Giannella
+ *
+ */
 @RestController
 @RequestMapping("produtos")
 public class ProdutoController {
@@ -28,6 +33,12 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService produtoService;
 
+	/**
+	 * Método responsável por consultar produtos por genero ou palavra chave
+	 * @param genero - Genero informado para consulta (sendo permitido M ou F)
+	 * @param palavraChave - String generica para consultar através da descrição de um produto
+	 * @return ResponseEntity<List<Produto>> - Retorno da API trazendo uma lista de Objetos Produto
+	 */
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAll(@RequestParam(required = false) String genero,
 			@RequestParam(required = false) String palavraChave) {
@@ -48,6 +59,11 @@ public class ProdutoController {
 
 	}
 
+	/**
+	 * Método responsável por consultar os produtos top3 de visualizações através de uma Categoria
+	 * @param categoria - ID da Categoria que deseja consultar os produtos top 3
+	 * @return ResponseEntity<List<Produto>> - Retorno da API trazendo uma lista de Objetos Produto
+	 */
 	@GetMapping("/top3")
 	public ResponseEntity<List<Produto>> findAll(@RequestParam(required = false) Long categoria) {
 
@@ -59,6 +75,11 @@ public class ProdutoController {
 
 	}
 
+	/**
+	 * Método responsável por consultar os detalhes de um determinado produto
+	 * @param id - Identificador do Produto (ID)
+	 * @return ResponseEntity<Produto> - Retorno da API trazendo um determinado Produto
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> findById(@PathVariable("id") final Long id) {
 		try {
@@ -68,11 +89,22 @@ public class ProdutoController {
 		}
 	}
 
+	/**
+	 * Método responsável por inserir um novo Produto no sistema
+	 * @param produto - Objeto Produto enviado para cadastro no sistema
+	 * @return ResponseEntity<Produto> - Retorno da API com novo Produto cadastrado no sistema
+	 */
 	@PostMapping
 	public ResponseEntity<Produto> create(@RequestBody final Produto produto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.create(produto));
 	}
 
+	/**
+	 * Método responsável por atualizar um produto no sistema
+	 * @param id - Identificador do Produto (ID)
+	 * @param produto - Produto com as informações atualizadas
+	 * @return ResponseEntity<Produto> - Retorno da API com o Produto atualizado no sistema
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Produto> update(@PathVariable("id") final Long id, @RequestBody final Produto produto) {
 		Produto prod = produtoService.getProduto(id);
@@ -85,6 +117,11 @@ public class ProdutoController {
 		return ResponseEntity.ok(produtoService.update(produto));
 	}
 
+	/**
+	 * Método responsável por remover um produto do sistema
+	 * @param id - Identificador do Produto (ID)
+	 * @return ResponseEntity<String> - Retorno da API com remoção do Produto
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable("id") final Long id) {
 		Produto prod = produtoService.getProduto(id);

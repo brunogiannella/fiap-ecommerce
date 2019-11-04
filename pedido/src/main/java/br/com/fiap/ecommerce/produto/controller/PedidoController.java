@@ -20,6 +20,11 @@ import br.com.fiap.ecommerce.produto.model.Pedido;
 import br.com.fiap.ecommerce.produto.model.StatusPedidoEnum;
 import br.com.fiap.ecommerce.produto.service.PedidoService;
 
+/**
+ * Classe responsável pelo controlador e exposição das APIs REST de Pedidos
+ * @author Bruno Giannella
+ *
+ */
 @RestController
 @RequestMapping("pedidos")
 public class PedidoController {

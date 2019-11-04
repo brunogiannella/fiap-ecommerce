@@ -10,12 +10,21 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.ecommerce.cliente.model.Cliente;
 import br.com.fiap.ecommerce.cliente.repository.ClienteRepository;
 
+/**
+ * Classe responsável pelos serviços relacionados aos Clientes da plataforma
+ * @author Bruno Giannella
+ *
+ */
 @Service
 public class ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
+    /**
+     * Método responsável por consultar todos os clientes na base de dados
+     * @return List<Cliente> - lista de clientes retornados
+     */
     public List<Cliente> findAll() {
         return clienteRepository.findAll();
     }
@@ -25,24 +34,9 @@ public class ClienteService {
                 .orElseThrow(() -> new EntityNotFoundException("CPF: " + cpf + " não encontrado !"));
     }
 
-    // Pattern fallback caso exista algum problema na consulta de CPFs no sistema
-    public Cliente buildFallbackGetCpf(String cpf){
-
-        Cliente clienteDomain = new Cliente();
-        clienteDomain.setNome("Cliente padrão do Sistema");
-        clienteDomain.setEndereco("Rua de Teste");
-        clienteDomain.setCpf("123.456.789-10");
-        clienteDomain.setCep("00000-000");
-        clienteDomain.setTelefone("0111234-5678");
-
-        return clienteDomain;
-    }
-
-
     public Cliente create(final Cliente cliente) {
         return clienteRepository.save(cliente);
     }
-
 
     public Cliente update(final Cliente cliente) {
         if(cliente.getCpf()== null) {
